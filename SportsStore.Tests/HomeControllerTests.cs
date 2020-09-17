@@ -26,11 +26,9 @@ namespace SportsStore.Tests
             HomeController controller = new HomeController(mock.Object);
 
             // Act
-            IQueryable<Product> products =
-                controller.Index().ViewData.Model as IQueryable<Product>;
-
+            ProductsListViewModel result = controller.Index().ViewData.Model as ProductsListViewModel;
             // Assert
-            Product[] prodArray = products.ToArray();
+            Product[] prodArray = result.Products.ToArray();
             Assert.True(prodArray.Length == 2);
             Assert.Equal("P1", prodArray[0].Name);
             Assert.Equal("P2", prodArray[1].Name);
